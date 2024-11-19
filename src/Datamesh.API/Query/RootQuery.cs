@@ -7,12 +7,13 @@ namespace Datamesh.API.Query
     public class RootQuery
     {
         public DBDirectQuery DBDirectQuery { get; set; }
-
+        //public DataFlow DataFlow { get; set; }
         public string isLive() => "server is live ";
 
         public RootQuery(PortalDbContext context)
         {
             DBDirectQuery = new DBDirectQuery();
+           // DataFlow = new DataFlow();
         }
 
     }

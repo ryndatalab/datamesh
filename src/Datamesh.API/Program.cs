@@ -6,6 +6,7 @@ using Datamesh.APIBusinessLogic;
 using HotChocolate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Org.Eclipse.TractusX.Portal.Backend.PortalBackend.DBAccess;
 using System;
@@ -15,6 +16,9 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        // Add service defaults & Aspire components.
+        builder.AddServiceDefaults();
 
         var Configuration = builder.Configuration;
         builder.Services

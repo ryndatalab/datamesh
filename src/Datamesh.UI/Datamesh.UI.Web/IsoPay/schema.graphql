@@ -1,0 +1,205 @@
+schema {
+  query: RootQuery
+  mutation: RootMutation
+}
+
+type RootQuery {
+  isLive: String!
+  dbDirectQuery: DBDirectQuery!
+}
+
+type RootMutation {
+  masterMutation: MasterMutation!
+  transactionMutation: TransactionMutation!
+}
+
+type TransactionMutation {
+  transfer(transferDto: TransferDtoInput!): MutationResult!
+}
+
+type MasterMutation {
+  currency(label: String!): MutationResult!
+  account(account: AccountInput!): MutationResult!
+  accountHead(label: String! currency: String!): MutationResult!
+}
+
+type DBDirectQuery {
+  currency(where: CurrencyFilterInput): [Currency!]!
+  accountHead(where: AccountHeadFilterInput): [AccountHead!]!
+  account(where: AccountFilterInput): [Account!]!
+  transaction(where: TransactionFilterInput): [Transaction!]!
+}
+
+input CurrencyFilterInput {
+  and: [CurrencyFilterInput!]
+  or: [CurrencyFilterInput!]
+  id: UuidOperationFilterInput
+  label: StringOperationFilterInput
+}
+
+input AccountHeadFilterInput {
+  and: [AccountHeadFilterInput!]
+  or: [AccountHeadFilterInput!]
+  accountHeadId: UuidOperationFilterInput
+  label: StringOperationFilterInput
+  currency: StringOperationFilterInput
+  accounts: ListFilterInputTypeOfAccountFilterInput
+}
+
+input AccountFilterInput {
+  and: [AccountFilterInput!]
+  or: [AccountFilterInput!]
+  id: UuidOperationFilterInput
+  accNumber: StringOperationFilterInput
+  balance: DecimalOperationFilterInput
+  accountHeadId: UuidOperationFilterInput
+  accountHead: AccountHeadFilterInput
+}
+
+input TransactionFilterInput {
+  and: [TransactionFilterInput!]
+  or: [TransactionFilterInput!]
+  id: UuidOperationFilterInput
+  onDate: DateTimeOperationFilterInput
+  accCreditId: UuidOperationFilterInput
+  accDebitId: UuidOperationFilterInput
+  accCredit: AccountFilterInput
+  accDebit: AccountFilterInput
+  amount: DecimalOperationFilterInput
+  currency: StringOperationFilterInput
+}
+
+input UuidOperationFilterInput {
+  eq: UUID
+  neq: UUID
+  in: [UUID]
+  nin: [UUID]
+  gt: UUID
+  ngt: UUID
+  gte: UUID
+  ngte: UUID
+  lt: UUID
+  nlt: UUID
+  lte: UUID
+  nlte: UUID
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input ListFilterInputTypeOfAccountFilterInput {
+  all: AccountFilterInput
+  none: AccountFilterInput
+  some: AccountFilterInput
+  any: Boolean
+}
+
+input DecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal]
+  nin: [Decimal]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+input DateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+scalar UUID
+
+"The built-in `Decimal` scalar type."
+scalar Decimal
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime
+
+input AccountInput {
+  id: UUID!
+  accNumber: String!
+  balance: Decimal!
+  accountHeadId: UUID
+  accountHead: AccountHeadInput
+}
+
+input TransferDtoInput {
+  senderAcc: String!
+  recieverAcc: String!
+  currency: String!
+  amt: Decimal!
+  comment: String! = ""
+}
+
+type MutationResult {
+  success: Boolean!
+  message: String
+  resultId: String
+}
+
+type Currency {
+  id: UUID!
+  label: String!
+}
+
+type AccountHead {
+  accountHeadId: UUID!
+  label: String!
+  currency: String!
+  accounts: [Account!]!
+}
+
+type Account {
+  id: UUID!
+  accNumber: String!
+  balance: Decimal!
+  accountHeadId: UUID
+  accountHead: AccountHead
+}
+
+type Transaction {
+  id: UUID!
+  onDate: DateTime
+  accCreditId: UUID
+  accDebitId: UUID
+  accCredit: Account
+  accDebit: Account
+  amount: Decimal!
+  currency: String
+}
+
+input AccountHeadInput {
+  accountHeadId: UUID!
+  label: String!
+  currency: String!
+  accounts: [AccountInput!]!
+}

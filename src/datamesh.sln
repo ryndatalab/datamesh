@@ -5,7 +5,15 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datamesh.API", "Datamesh.API\Datamesh.API.csproj", "{735565A7-B2B7-4A2A-B383-1BE91A9821F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datamesh.Repository", "Datamesh.Repository\Datamesh.Repository.csproj", "{F9DCCBBC-5C0E-4FBA-A8FE-CD643B54004B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datamesh.Repository", "Datamesh.Repository\Datamesh.Repository.csproj", "{F9DCCBBC-5C0E-4FBA-A8FE-CD643B54004B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datamesh.UI.AppHost", "Datamesh.UI\Datamesh.UI.AppHost\Datamesh.UI.AppHost.csproj", "{EAEA811E-E081-4C27-8BAF-EBF1E09D883B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datamesh.UI.ServiceDefaults", "Datamesh.UI\Datamesh.UI.ServiceDefaults\Datamesh.UI.ServiceDefaults.csproj", "{AB68EC41-D518-4341-8678-E04C5E82B9D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datamesh.UI.ApiService", "Datamesh.UI\Datamesh.UI.ApiService\Datamesh.UI.ApiService.csproj", "{8A93051D-E705-4EA1-B006-A346A40B0862}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datamesh.UI.Web", "Datamesh.UI\Datamesh.UI.Web\Datamesh.UI.Web.csproj", "{4B87AF1C-09A9-4C6B-987B-0EC43CB623A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{F9DCCBBC-5C0E-4FBA-A8FE-CD643B54004B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9DCCBBC-5C0E-4FBA-A8FE-CD643B54004B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9DCCBBC-5C0E-4FBA-A8FE-CD643B54004B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAEA811E-E081-4C27-8BAF-EBF1E09D883B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAEA811E-E081-4C27-8BAF-EBF1E09D883B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAEA811E-E081-4C27-8BAF-EBF1E09D883B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAEA811E-E081-4C27-8BAF-EBF1E09D883B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB68EC41-D518-4341-8678-E04C5E82B9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB68EC41-D518-4341-8678-E04C5E82B9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB68EC41-D518-4341-8678-E04C5E82B9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB68EC41-D518-4341-8678-E04C5E82B9D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A93051D-E705-4EA1-B006-A346A40B0862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A93051D-E705-4EA1-B006-A346A40B0862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A93051D-E705-4EA1-B006-A346A40B0862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A93051D-E705-4EA1-B006-A346A40B0862}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B87AF1C-09A9-4C6B-987B-0EC43CB623A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B87AF1C-09A9-4C6B-987B-0EC43CB623A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B87AF1C-09A9-4C6B-987B-0EC43CB623A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B87AF1C-09A9-4C6B-987B-0EC43CB623A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

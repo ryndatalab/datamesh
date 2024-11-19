@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Datamesh.Repository\Datamesh.Repository.csproj" />
+    <ProjectReference Include="..\Datamesh.UI\Datamesh.UI.ServiceDefaults\Datamesh.UI.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,48 @@
+﻿@page "/counter"
+@using Datamesh.UI.Web.Components.Model
+@rendermode InteractiveServer
+@inject DatameshApiClient WeatherApi
+
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+<input type="number" value="@TransferAmt" />
+<button class="btn btn-primary" @onclick="Transfer">Transfer</button>
+
+@code {
+    private int currentCount = 0;
+    private double TransferAmt = 0;
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+    private async Task Transfer()
+    {
+        var query = new GraphQL.GraphQLRequest
+            {
+                Variables = @"{""amount"": 0.11}",
+
+                Query = @"
+                        mutation transfer {
+                          transactionMutation {
+                                transfer(
+                              transferDto: { amt: 1.1, comment:""test"", currency: ""EUR"",
+                              recieverAcc: ""9"",
+                        senderAcc: ""10"" }
+                            ) {
+                              message
+                              resultId
+                              success
+                            }
+                          }
+                        }
+          "
+            };
+        var response = await WeatherApi._client.SendMutationAsync<RootTransaction>(query);
+
+    }
+
+}

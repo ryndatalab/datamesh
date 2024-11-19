@@ -1,0 +1,108 @@
+﻿@page "/currency"
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
+
+@inject DatameshApiClient WeatherApi
+
+<PageTitle>Currency</PageTitle>
+
+<h1>Currency</h1>
+
+<p>This component demonstrates showing data loaded from a backend API service.</p>
+
+
+@if (data != null)
+{
+    <h4>Loaded on :  @data.isLive</h4>
+    <h4>currency</h4>
+    @foreach (var currency in data.dbDirectQuery.currency)
+    {
+        <div class="btn-group">
+            <div class="btn-info active active badge ">@currency.label</div>
+        </div>
+    }
+    <br />
+    <h4>accountHead</h4>
+
+    @foreach (var item in data.dbDirectQuery.accountHead)
+    {
+        <div class=" shadow ">
+            <label>@item.label</label> 
+            <i>Head: @item.accountHeadId</i>
+            <div class="btn-info active active badge ">@item.currency</div>
+        </div>
+    }
+    <br />
+    <h4>account</h4>
+    @foreach (var item in data.dbDirectQuery.account)
+    {
+        <div class=" shadow ">
+            <div class="  ">Acc Num @item.accNumber</div>
+            <i class="  ">  @item.id</i>
+            <div class="  ">Head : @item.accountHeadId</div>
+            <div class="btn-info active active badge ">@item.balance</div>
+            <br />
+        </div>
+    }
+    <h4>transaction</h4>
+    @foreach (var item in data.dbDirectQuery.transaction)
+    {
+        <div class=" shadow ">
+            <div class="  ">To: @item.accCreditId</div>
+            <div class="  ">From: @item.accDebitId</div>
+            <div class="btn-info     badge align-content-end ">@item.amount @item.currency</div>
+             <label>@item.onDate </label>
+        </div>
+    }
+}
+
+@code {
+    private IList<Model.Currency>? allCurreny;
+    Model.Data? data;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await GetDataQuery();
+        allCurreny = response.dbDirectQuery.currency;
+        data = response;
+    }
+
+    public async Task<Model.Data> GetDataQuery()
+    {
+        var query = new GraphQL.GraphQLRequest
+            {
+                Query = @"
+          query AllCurrency {
+                      isLive
+                      dbDirectQuery {
+                        account {
+                                  accNumber
+                                  accountHeadId
+                                  balance
+                                  id
+                                }
+                                accountHead {
+                                  accountHeadId
+                                  currency
+                                  label
+                                }
+                            transaction {
+                                  accCreditId
+                                  accDebitId
+                                  amount
+                                  currency
+                                  id
+                                  onDate
+                                }
+                                currency {
+                                  id
+                                  label
+                                }
+                      }
+                    }"
+            };
+
+        var response = await WeatherApi._client.SendQueryAsync<Model.Data>(query);
+        return response.Data;
+    }
+}
