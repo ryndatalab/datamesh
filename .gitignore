@@ -12,3 +12,11 @@
 /src/Datamesh.API/obj
 /src/Datamesh.Repository/bin/Debug/net8.0
 /src/Datamesh.Repository/obj
+/src/Datamesh.UI/Datamesh.UI.ApiService/bin/Debug/net8.0
+/src/Datamesh.UI/Datamesh.UI.ApiService/obj
+/src/Datamesh.UI/Datamesh.UI.AppHost/bin/Debug/net8.0
+/src/Datamesh.UI/Datamesh.UI.AppHost/obj
+/src/Datamesh.UI/Datamesh.UI.ServiceDefaults/bin/Debug/net8.0
+/src/Datamesh.UI/Datamesh.UI.ServiceDefaults/obj
+/src/Datamesh.UI/Datamesh.UI.Web/bin/Debug/net8.0
+/src/Datamesh.UI/Datamesh.UI.Web/obj
